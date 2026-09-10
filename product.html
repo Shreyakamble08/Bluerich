@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLUERICH · Product</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --white: #ffffff;
+            --silver-50: #f8fafc;
+            --silver-100: #f1f4f7;
+            --silver-200: #e3e7eb;
+            --silver-300: #cbd1d8;
+            --silver-400: #aeb6c0;
+            --silver-500: #858f9b;
+
+            --navy-950: #06132e;
+            --navy-900: #071b49;
+            --navy-800: #0b2a60;
+            --navy-700: #123b78;
+
+            --cyan: #39a9d6;
+
+            --text: #0b1830;
+            --muted: #667085;
+            --border: #e6eaf0;
+
+            --navy-metallic:
+                linear-gradient(135deg, #06132e 0%, #0b2a60 45%, #071b49 65%, #123b78 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+            background: #ffffff;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1140px, calc(100% - 40px));
+            margin-inline: auto;
+        }
+
+        /* ---------- PRODUCT LAYOUT ---------- */
+
+        .product {
+            padding: 24px 0 48px;
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* ---------- GALLERY (LEFT) ---------- */
+
+        .gallery {
+            position: sticky;
+            top: 40px;
+            align-self: start;
+        }
+
+        /* Main product image — no visible outer container */
+        .gallery-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: transparent;
+            border: 1px solid var(--navy-900);
+            border-radius: 20px;
+            padding: 20px;
+            overflow: visible;
+            width: 100%;
+        }
+
+        .gallery-main img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 380px;
+            max-height: 420px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-main:hover img {
+            transform: scale(1.03);
+        }
+
+        /* ---------- THUMBNAILS ---------- */
+
+        .gallery-thumbs {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .thumb {
+            width: 68px;
+            height: 68px;
+            flex-shrink: 0;
+
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--silver-50);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 8px;
+            cursor: pointer;
+
+            transition: border-color 0.2s ease;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .thumb:hover {
+            border-color: var(--silver-400);
+        }
+
+        .thumb.active {
+            border-color: var(--navy-900);
+        }
+
+
+        /* ---------- INFO (RIGHT) ---------- */
+        .info {
+            padding-top: 4px;
+        }
+
+        .eyebrow {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .title {
+            margin-top: 12px;
+            font-family: "Gemunu Libre", sans-serif;
+            font-optical-sizing: auto;
+            font-size: clamp(2.4rem, 4.4vw, 3.4rem);
+            font-weight: 800;
+            font-style: italic;
+            line-height: 1.02;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--navy-800);
+        }
+
+        .title .accent {
+            color: var(--cyan);
+        }
+
+        .subtitle {
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: var(--muted);
+            max-width: 480px;
+        }
+
+        /* ---------- PRICE ---------- */
+        .price-block {
+            margin-top: 12px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .price-line {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--navy-950);
+        }
+
+        .price-mrp {
+            font-size: 0.95rem;
+            color: var(--silver-500);
+            text-decoration: line-through;
+        }
+
+        .price-save {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--cyan);
+        }
+
+        .price-per {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* ---------- PACK SELECTOR ---------- */
+        .pack-section {
+            margin-top: 32px;
+        }
+
+        .pack-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .pack-header h3 {
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--navy-950);
+        }
+
+        .pack-header span {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .pack-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .pack {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 20px;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .pack:last-child {
+            border-bottom: none;
+        }
+
+        .pack:hover {
+            background: var(--silver-50);
+        }
+
+        .pack.selected {
+            background: var(--silver-50);
+        }
+
+        .pack-radio {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1.5px solid var(--silver-400);
+            position: relative;
+            flex-shrink: 0;
+            transition: border-color 0.15s ease;
+        }
+
+        .pack.selected .pack-radio {
+            border-color: var(--navy-900);
+        }
+
+        .pack.selected .pack-radio::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--navy-900);
+        }
+
+        .pack-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .pack-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--navy-950);
+        }
+
+        .pack-pricing {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .pack-pricing .price {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .pack-pricing .mrp {
+            font-size: 0.78rem;
+            color: var(--silver-500);
+            text-decoration: line-through;
+        }
+
+        .pack-pricing .save {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--cyan);
+        }
+
+        .pack-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: var(--silver-100);
+            padding: 3px 10px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        /* ---------- QUANTITY + CTA ---------- */
+        .purchase {
+            margin-top: 28px;
+            display: flex;
+            align-items: stretch;
+            gap: 12px;
+        }
+
+        .qty {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 54px;
+            flex-shrink: 0;
+        }
+
+        .qty button {
+            width: 42px;
+            height: 54px;
+            border: none;
+            background: transparent;
+            color: var(--navy-950);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .qty button:hover {
+            background: var(--silver-50);
+        }
+
+        .qty input {
+            width: 44px;
+            height: 54px;
+            border: none;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--navy-950);
+            background: transparent;
+            outline: none;
+        }
+
+        .btn-primary {
+            flex: 1;
+            height: 54px;
+            border: none;
+            border-radius: 12px;
+            background: var(--navy-950);
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            background: var(--navy-800);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.99);
+        }
+
+
+        /* ---------- ACCORDION ---------- */
+        .accordion {
+            margin-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 0;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--navy-950);
+            text-align: left;
+        }
+
+        .accordion-trigger i {
+            color: var(--muted);
+            font-size: 0.75rem;
+            transition: transform 0.25s ease;
+        }
+
+        .accordion-item.open .accordion-trigger i {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-item.open .accordion-content {
+            max-height: 500px;
+        }
+
+        .accordion-inner {
+            padding: 0 0 24px;
+            font-size: 0.88rem;
+            line-height: 1.75;
+            color: var(--muted);
+        }
+
+        .accordion-inner ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .accordion-inner li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .accordion-inner li::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--cyan);
+            margin-top: 9px;
+            flex-shrink: 0;
+        }
+
+        /* ---------- SPEC TABLE ---------- */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .spec-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .spec-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .spec-table td {
+            padding: 12px 0;
+            color: var(--muted);
+        }
+
+        .spec-table td:first-child {
+            color: var(--navy-950);
+            font-weight: 500;
+            width: 45%;
+        }
+
+        /* ---------- RELATED ---------- */
+        .related {
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .related-header h2 {
+            font-family: "Fjalla One", sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            color: var(--navy-950);
+        }
+
+        .related-header a {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .related-header a:hover {
+            color: var(--navy-950);
+            border-color: var(--navy-950);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .product-card-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            overflow: visible;
+            aspect-ratio: auto;
+        }
+
+        .product-card-image img {
+            display: block;
+            width: auto;
+            height: 220px;
+            max-width: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .product-card:hover .product-card-image img {
+            transform: scale(1.05);
+        }
+
+        .product-card-info {
+            padding-top: 18px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .product-card-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--navy-950);
+        }
+
+        .product-card-price {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* ---------- FOOTER ---------- */
+        /* =========================================================
+    FOOTER
+   ========================================================= */
+        .site-footer {
+            background: var(--navy-950, #06132e);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 32px 0 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            padding-bottom: 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Brand */
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .footer-logo {
+            font-family: "Fjalla One", sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-decoration: none;
+            transform: skewX(-8deg);
+            display: inline-block;
+        }
+
+        .footer-tagline {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Links */
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--cyan, #39a9d6);
+        }
+
+        /* Socials */
+        .footer-social {
+            display: flex;
+            gap: 8px;
+        }
+
+        .footer-social a {
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.8rem;
+            transition: all 0.22s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--cyan, #39a9d6);
+            border-color: var(--cyan, #39a9d6);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .footer-logo img {
+            width: 75px;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Bottom */
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 16px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            flex-wrap: wrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 720px) {
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+            }
+
+            .footer-links {
+                gap: 16px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 960px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .gallery {
+                position: static;
+            }
+
+            .gallery-main {
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .gallery-thumbs {
+                justify-content: center;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .product {
+                padding: 32px 0 64px;
+            }
+
+            .gallery-main {
+                padding: 32px;
+                border-radius: 16px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .price {
+                font-size: 1.6rem;
+            }
+
+            .purchase {
+                flex-direction: column;
+            }
+
+            .qty {
+                justify-content: center;
+            }
+
+            .pack-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .related {
+                padding: 56px 0;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <div id="common-header"></div>
+
+    <main>
+
+        <!-- ================= PRODUCT ================= -->
+        <section class="product">
+            <div class="container">
+                <div class="product-layout">
+
+                    <!-- ---------- GALLERY ---------- -->
+                    <div class="gallery">
+                        <div class="gallery-main">
+                            <img id="mainImage" src="/IMAGES/can4.png" alt="FAST TRACK energy can" />
+                        </div>
+
+                        <div class="gallery-thumbs">
+                            <div class="thumb active" onclick="changeImage(this, '/IMAGES/can4.png')">
+                                <img src="/IMAGES/can4.png" alt="Front view" />
+                            </div>
+                            <div class="thumb" onclick="changeImage(this, '/IMAGES/can1.png')">
+                                <img src="/IMAGES/can1.png" alt="Side view" />
+                            </div>
+                            <div class="thumb" onclick="changeImage(this, '/IMAGES/can4.png')">
+                                <img src="/IMAGES/can4.png" alt="Detail view" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ---------- INFO ---------- -->
+                    <div class="info">
+
+                        <span class="eyebrow">Energy Beverage · 250ml</span>
+
+                        <h1 class="title">
+                            BLUERICH<br />
+                        </h1>
+
+                        <p class="subtitle">
+                            CAFFEINATED BEVERAGE
+                        </p>
+
+
+                        <!-- Price -->
+                        <div class="price-block">
+                            <div class="price-line">
+                                <span class="price" id="displayPrice">₹800</span>
+                                <span class="price-mrp" id="displayMrp">₹900</span>
+                                <span class="price-save" id="displaySave">Save ₹100</span>
+                            </div>
+                            <p class="price-per" id="priceNote">Pack of 6 · ₹133 per can</p>
+                        </div>
+
+                        <!-- Pack Selector -->
+                        <div class="pack-section">
+                            <div class="pack-header">
+                                <h3>Select Pack</h3>
+                            </div>
+
+                            <div class="pack-list">
+                                <div class="pack selected" data-pack="6" data-price="800" data-mrp="900" data-save="100"
+                                    data-percan="133" onclick="selectPack(this)">
+                                    <span class="pack-radio"></span>
+                                    <div class="pack-info">
+                                        <span class="pack-name">Pack of 6</span>
+                                        <div class="pack-pricing">
+                                            <span class="price">₹800</span>
+                                            <span class="mrp">₹900</span>
+                                            <span class="save">Save ₹100</span>
+                                        </div>
+                                    </div>
+                                    <span class="pack-tag">Starter</span>
+                                </div>
+
+                                <div class="pack" data-pack="12" data-price="1500" data-mrp="1800" data-save="300"
+                                    data-percan="125" onclick="selectPack(this)">
+                                    <span class="pack-radio"></span>
+                                    <div class="pack-info">
+                                        <span class="pack-name">Pack of 12</span>
+                                        <div class="pack-pricing">
+                                            <span class="price">₹1500</span>
+                                            <span class="mrp">₹1800</span>
+                                            <span class="save">Save ₹300</span>
+                                        </div>
+                                    </div>
+                                    <span class="pack-tag">Popular</span>
+                                </div>
+
+                                <div class="pack" data-pack="24" data-price="2400" data-mrp="3600" data-save="1200"
+                                    data-percan="100" onclick="selectPack(this)">
+                                    <span class="pack-radio"></span>
+                                    <div class="pack-info">
+                                        <span class="pack-name">Pack of 24</span>
+                                        <div class="pack-pricing">
+                                            <span class="price">₹2400</span>
+                                            <span class="mrp">₹3600</span>
+                                            <span class="save">Save ₹1200</span>
+                                        </div>
+                                    </div>
+                                    <span class="pack-tag">Best value</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quantity + CTA -->
+                        <div class="purchase">
+                            <div class="qty">
+                                <button onclick="updateQty(-1)" aria-label="Decrease quantity">−</button>
+                                <input type="number" id="productQuantity" value="1" min="1" max="10" readonly />
+                                <button onclick="updateQty(1)" aria-label="Increase quantity">+</button>
+                            </div>
+                            <button class="btn-primary" onclick="buyNow()">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                BUY NOW!
+                            </button>
+                        </div>
+
+                        <!-- Accordion -->
+                        <div class="accordion">
+
+                            <div class="accordion-item open">
+                                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                                    Description
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-inner">
+                                        <p>BLUERICH is a premium carbonated caffeinated beverage crafted for those who
+                                            demand more from every moment. With a clean, focused blend of natural
+                                            caffeine, taurine, and essential B vitamins, each can is designed to support
+                                            alertness and sustained energy without the crash.</p>
+                                        <ul style="margin-top: 14px;">
+                                            <li>75mg natural caffeine per can for clean, focused energy</li>
+                                            <li>Taurine and Vitamin B complex (B2, B3, B6, B12) for performance support
+                                            </li>
+                                            <li>Zero fat, zero cholesterol — just pure performance</li>
+                                            <li>Perfect for workouts, workdays, and everything in between</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                                    Ingredients
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-inner">
+                                        <p style="margin-bottom: 14px;">Water, Sugar, Acidity Regulator (INS 330),
+                                            Taurine, Natural Caffeine, Flavors (NI), Class II Preservative (INS 211),
+                                            Carbon Dioxide (INS 290), Vitamin B2, Niacin, Vitamin B6 and Vitamin B12
+                                            (0.1%).</p>
+                                        <p style="margin-bottom: 14px;"><strong>Contains permitted natural caramel color
+                                                (INS 150D)</strong> and nature identical flavoring substances.</p>
+                                        <table class="spec-table">
+                                            <tr>
+                                                <td>Natural Caffeine</td>
+                                                <td>75mg per 250ml</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Taurine</td>
+                                                <td>Present</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vitamin B2</td>
+                                                <td>2mg per 100ml</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vitamin B3 (Niacin)</td>
+                                                <td>2.4mg per 100ml</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vitamin B6</td>
+                                                <td>0.4mg per 100ml</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vitamin B12</td>
+                                                <td>0.2mcg per 100ml</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                                    Nutrition Facts
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-inner">
+                                        <p style="margin-bottom: 14px; font-size: 0.82rem;">Per 100ml · 1 serving per
+                                            pack (250ml)</p>
+                                        <table class="spec-table">
+                                            <tr>
+                                                <td>Energy</td>
+                                                <td>48.66 kcal</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Carbohydrate</td>
+                                                <td>11.89 g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total Sugar</td>
+                                                <td>11.7 g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Added Sugar</td>
+                                                <td>11.5 g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total Fat</td>
+                                                <td>0 g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Protein</td>
+                                                <td>0 g</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cholesterol</td>
+                                                <td>0 mg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sodium</td>
+                                                <td>13.38 mg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vitamin B2</td>
+                                                <td>2 mg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vitamin B3</td>
+                                                <td>2.4 mg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vitamin B6</td>
+                                                <td>0.4 mg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vitamin B12</td>
+                                                <td>0.2 mcg</td>
+                                            </tr>
+                                        </table>
+                                        <p style="margin-top: 14px; font-size: 0.75rem; color: var(--muted);">
+                                            * % RDA calculated on the basis of 2000 kcal energy (as per ICMR 2020) per
+                                            250ml serving.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                                    Caffeine Warning
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-inner">
+                                        <p style="font-weight: 600; color: var(--navy-950); margin-bottom: 10px;">
+                                            Contains Caffeine</p>
+                                        <ul>
+                                            <li><strong>High caffeine (75mg per 250ml).</strong></li>
+                                            <li>Not recommended for children, pregnant or lactating women.</li>
+                                            <li>Not recommended for persons sensitive to caffeine.</li>
+                                            <li>Consume not more than 500ml per day.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                                    Shipping & Returns
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="accordion-inner">
+                                        <ul>
+                                            <li>We ship across India.</li>
+                                            <li>Orders dispatched within 24 hours of confirmation.</li>
+                                            <li>Standard delivery: 3–5 business days.</li>
+                                            <li>All sales are final.Returns and refunds are not
+                                                accepted.</li>
+                                            <li>For any order-related concerns, please contact our support team within
+                                                24 hours of delivery.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= RELATED ================= -->
+        <section class="related">
+            <div class="container">
+                <div class="related-grid">
+
+                    <div class="product-card" onclick="window.location.href='product.html'">
+                        <div class="product-card-image">
+                            <img src="/IMAGES/6can.png" alt="FAST TRACK Pack of 6" />
+                        </div>
+                        <div class="product-card-info">
+                            <span class="product-card-name">Pack of 6</span>
+                            <span class="product-card-price">₹800</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="window.location.href='product.html'">
+                        <div class="product-card-image">
+                            <img src="/IMAGES/12can.png" alt="FAST TRACK Pack of 12" />
+                        </div>
+                        <div class="product-card-info">
+                            <span class="product-card-name">Pack of 12</span>
+                            <span class="product-card-price">₹1500</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="window.location.href='product.html'">
+                        <div class="product-card-image">
+                            <img src="/IMAGES/can4.png" alt="FAST TRACK Pack of 24" />
+                        </div>
+                        <div class="product-card-info">
+                            <span class="product-card-name">Pack of 24</span>
+                            <span class="product-card-price">₹2400</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+   <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+
+                <!-- Left: brand + tagline -->
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="/IMAGES/logo.png" alt="BLUERICH Logo">
+                    </a>
+
+                </div>
+
+                <!-- Right: links -->
+                <nav class="footer-links" aria-label="Footer">
+                    <a href="/poilcy.html">Privacy</a>
+                    <a href="/terms.html">Terms</a>
+                    <a href="/shipping.html">Shipping</a>
+                   
+                </nav>
+
+                <!-- Socials -->
+                <div class="footer-social">
+                    <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://wa.me/917219713151" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 FAST TRACK Beverages Pvt. Ltd.</p>
+            
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // ============================================================
+        // HEADER LOAD
+        // ============================================================
+        fetch("header.html")
+            .then(response => {
+                if (!response.ok) throw new Error("Could not load header.html");
+                return response.text();
+            })
+            .then(html => {
+                const headerContainer = document.getElementById("common-header");
+                headerContainer.innerHTML = html;
+
+                const header = document.getElementById("siteHeader");
+                const menuToggle = document.getElementById("menuToggle");
+                const mobileMenu = document.getElementById("mobileMenu");
+
+                if (!header || !menuToggle || !mobileMenu) return;
+
+                menuToggle.addEventListener("click", function () {
+                    const isOpen = header.classList.toggle("menu-open");
+                    menuToggle.setAttribute("aria-expanded", isOpen);
+                });
+
+                mobileMenu.querySelectorAll("a").forEach(link => {
+                    link.addEventListener("click", function () {
+                        header.classList.remove("menu-open");
+                        menuToggle.setAttribute("aria-expanded", "false");
+                    });
+                });
+
+                document.addEventListener("keydown", function (event) {
+                    if (event.key === "Escape") {
+                        header.classList.remove("menu-open");
+                        menuToggle.setAttribute("aria-expanded", "false");
+                    }
+                });
+
+                document.addEventListener("click", function (event) {
+                    if (header.classList.contains("menu-open") && !header.contains(event.target)) {
+                        header.classList.remove("menu-open");
+                        menuToggle.setAttribute("aria-expanded", "false");
+                    }
+                });
+
+                window.addEventListener("resize", function () {
+                    if (window.innerWidth > 900) {
+                        header.classList.remove("menu-open");
+                        menuToggle.setAttribute("aria-expanded", "false");
+                    }
+                });
+            })
+            .catch(error => console.error("Header loading error:", error));
+
+        // ============================================================
+        // WHATSAPP ORDER CONFIG
+        // ============================================================
+        const WHATSAPP_NUMBER = '917219713151';
+
+        // ============================================================
+        // BUY NOW → WhatsApp with order summary
+        // ============================================================
+        function buyNow() {
+            // Rebuild from current state (selectedPack + quantity)
+            const total = selectedPack.price * quantity;
+            const totalMrp = selectedPack.mrp * quantity;
+            const totalSave = selectedPack.save * quantity;
+
+            // Build the message
+            const message =
+                `Hello BLUERICH Team,
+
+I would like to place an order.
+
+*Order Summary*
+Product:   BLUERICH Caffeinated Beverage (250ml)
+Pack:      Pack of ${selectedPack.size}
+Quantity:  ${quantity}
+Unit Price: ₹${selectedPack.price.toLocaleString()}
+MRP:       ₹${totalMrp.toLocaleString()}
+You Save:  ₹${totalSave.toLocaleString()}
+*Total:    ₹${total.toLocaleString()}*
+
+Please confirm availability and share payment / delivery details.
+
+Thank you.`;
+
+            // Encode + open WhatsApp
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // ============================================================
+        // STATE
+        // ============================================================
+        let selectedPack = { size: 6, price: 800, mrp: 900, save: 100, percan: 133 };
+        let quantity = 1;
+
+        // ============================================================
+        // PACK SELECT
+        // ============================================================
+        function selectPack(el) {
+            document.querySelectorAll('.pack').forEach(p => p.classList.remove('selected'));
+            el.classList.add('selected');
+
+            selectedPack = {
+                size: parseInt(el.dataset.pack),
+                price: parseInt(el.dataset.price),
+                mrp: parseInt(el.dataset.mrp),
+                save: parseInt(el.dataset.save),
+                percan: parseInt(el.dataset.percan)
+            };
+
+            updatePriceDisplay();
+        }
+
+        // ============================================================
+        // PRICE DISPLAY
+        // ============================================================
+        function updatePriceDisplay() {
+            const total = selectedPack.price * quantity;
+            const totalMrp = selectedPack.mrp * quantity;
+            const totalSave = selectedPack.save * quantity;
+
+            document.getElementById('displayPrice').textContent = '₹' + total.toLocaleString();
+            document.getElementById('displayMrp').textContent = '₹' + totalMrp.toLocaleString();
+            document.getElementById('displaySave').textContent = 'Save ₹' + totalSave.toLocaleString();
+            document.getElementById('priceNote').textContent =
+                'Pack of ' + selectedPack.size + ' · ₹' + selectedPack.percan + ' per can';
+        }
+
+        // ============================================================
+        // QUANTITY
+        // ============================================================
+        function updateQty(delta) {
+            quantity = Math.max(1, Math.min(10, quantity + delta));
+            document.getElementById('productQuantity').value = quantity;
+            updatePriceDisplay();
+        }
+
+        // ============================================================
+        // GALLERY
+        // ============================================================
+        function changeImage(el, src) {
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('mainImage').src = src;
+        }
+
+        // ============================================================
+        // ACCORDION
+        // ============================================================
+        function toggleAccordion(trigger) {
+            const item = trigger.closest('.accordion-item');
+            const isOpen = item.classList.contains('open');
+
+            // Close all
+            document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+
+            // Toggle current
+            if (!isOpen) item.classList.add('open');
+        }
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => toast.classList.remove('show'), 2600);
+        }
+
+        // ============================================================
+        // CART
+        // ============================================================
+        function addToCart() {
+            const total = selectedPack.price * quantity;
+            showToast(quantity + ' × Pack of ' + selectedPack.size + ' added · ₹' + total.toLocaleString());
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', updatePriceDisplay);
+    </script>
+
+</body>
+
+</html>

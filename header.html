@@ -1,0 +1,312 @@
+<style>
+    /* ================= COMMON HEADER ================= */
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        width: 100%;
+        overflow: hidden;
+
+        background:
+            radial-gradient(circle at 50% 32%,
+                rgba(255, 255, 255, 0.98),
+                rgba(255, 255, 255, 0.35) 40%,
+                transparent 68%),
+            var(--metallic);
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+
+        box-shadow:
+            0 10px 30px rgba(16, 24, 40, 0.08),
+            inset 0 1px rgba(255, 255, 255, 0.95);
+    }
+
+    .site-header::before {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: rgba(57, 169, 214, 0.08);
+        filter: blur(45px);
+        pointer-events: none;
+    }
+
+    .site-header .header-inner {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* LOGO */
+
+    .logo-frame {
+        width: 58px;
+        height: 58px;
+        padding: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: linear-gradient(135deg,
+                #0b2a60,
+                #06132e);
+        box-shadow:
+            0 5px 16px rgba(6, 19, 46, 0.30),
+            inset 0 1px 1px rgba(255, 255, 255, 0.18),
+            inset 0 -1px 2px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+    }
+
+    .logo-frame .brand-logo {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        border-radius: 9px;
+        margin-left: 5px;
+        transform: scale(1.25);
+        transform-origin: center center;
+    }
+
+    .site-header .brand-logo {
+        width: 140px !important;
+        height: 40px !important;
+        max-height: 40px !important;
+        object-fit: contain;
+        object-position: left center;
+        display: block;
+    }
+
+    .site-header .logo-mark {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 11px;
+        color: white;
+        background: var(--navy-metallic);
+        box-shadow:
+            inset 0 1px rgba(255, 255, 255, 0.35),
+            0 8px 20px rgba(7, 27, 73, 0.16);
+        font-weight: 800;
+        letter-spacing: 0;
+    }
+
+    /* DESKTOP NAV */
+
+    .site-header .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .site-header .desktop-nav a {
+        padding: 10px 14px;
+        border-radius: 10px;
+        color: #475467;
+        font-size: 0.88rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.25s ease;
+    }
+
+    .site-header .desktop-nav a:hover {
+        color: var(--navy-900);
+        background: rgba(7, 27, 73, 0.06);
+    }
+
+    .site-header .desktop-nav .nav-cta {
+        color: white !important;
+        background: var(--navy-metallic);
+        box-shadow: 0 8px 18px rgba(7, 27, 73, 0.16);
+    }
+
+    .site-header .desktop-nav .nav-cta:hover {
+        transform: translateY(-1px);
+        background: linear-gradient(135deg, #0b2a60, #06132e);
+    }
+
+    /* HAMBURGER */
+
+    .site-header .menu-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 1px solid rgba(7, 27, 73, 0.12);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.75);
+        cursor: pointer;
+
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+
+        transition: 0.25s ease;
+    }
+
+    .site-header .menu-toggle:hover {
+        background: rgba(7, 27, 73, 0.05);
+    }
+
+    .site-header .menu-toggle span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        border-radius: 999px;
+        background: var(--navy-900);
+        transition: 0.3s ease;
+    }
+
+    /* MOBILE MENU */
+
+    .site-header .mobile-menu {
+        display: none;
+        padding: 0 20px 20px;
+        border-top: 1px solid rgba(7, 27, 73, 0.06);
+    }
+
+    .site-header .mobile-menu a {
+        display: block;
+        padding: 14px 15px;
+        margin-top: 5px;
+        border-radius: 10px;
+        color: #475467;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.25s ease;
+    }
+
+    .site-header .mobile-menu a:hover {
+        color: var(--navy-900);
+        background: rgba(7, 27, 73, 0.06);
+    }
+
+    .site-header .mobile-menu .mobile-cta {
+        margin-top: 10px;
+        color: white;
+        text-align: center;
+        background: var(--navy-metallic);
+        box-shadow: 0 8px 18px rgba(7, 27, 73, 0.14);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+        .logo-frame {
+            width: 52px;
+            height: 52px;
+            border-radius: 10px;
+        }
+
+        .logo-frame .brand-logo {
+            border-radius: 7px;
+            transform: scale(1.18);
+            transform-origin: center center;
+        }
+    }
+
+    /* MOBILE OPEN STATE */
+
+    .site-header.menu-open .mobile-menu {
+        display: block;
+    }
+
+    .site-header.menu-open .menu-toggle span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .site-header.menu-open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .site-header.menu-open .menu-toggle span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+        .site-header .desktop-nav {
+            display: none;
+        }
+
+        .site-header .menu-toggle {
+            display: flex;
+        }
+
+        .site-header .header-inner {
+            min-height: 70px;
+        }
+    }
+
+    @media (max-width: 620px) {
+        .site-header .header-inner {
+            min-height: 66px;
+        }
+
+        .site-header .brand-logo {
+            width: 110px !important;
+            height: 36px !important;
+            max-height: 36px !important;
+        }
+
+        .site-header .logo-mark {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+        }
+
+        .site-header .mobile-menu {
+            padding-left: 14px;
+            padding-right: 14px;
+        }
+    }
+</style>
+
+<header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+
+        <!-- LOGO -->
+        <a href="/index.html" class="flex items-center shrink-0">
+            <div class="logo-frame">
+                <img src="/IMAGES/logo.png" alt="FAST TRACK" class="brand-logo" />
+            </div>
+        </a>
+
+        <!-- DESKTOP NAV -->
+        <nav class="desktop-nav">
+            <a href="/product.html">Product</a>
+            <a href="/index.html#distributor">Distributors</a>
+            <a href="/index.html#careers">Careers</a>
+            <a href="/product.html" class="nav-cta">Buy Now</a>
+        </nav>
+
+        <!-- MOBILE HAMBURGER -->
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open navigation menu"
+            aria-expanded="false" aria-controls="mobileMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- MOBILE MENU -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/product.html">Product</a>
+            <a href="/index.html#distributor">Distributors</a>
+            <a href="/index.html#careers">Careers</a>
+            <a href="/product.html" class="mobile-cta">Buy Now</a>
+        </div>
+</header>
