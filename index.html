@@ -2294,9 +2294,9 @@
                         <span class="total-label">Total</span>
                         <span class="total-price" id="bulkTotalPrice">₹800</span>
                     </div>
-                    <button class="bulk-add-to-cart" onclick="addToCart()">
+                    <button class="bulk-add-to-cart" onclick="bulkBuyNow()">
                         <i class="fa-solid fa-cart-plus"></i>
-                        Add to Cart
+                        Buy Now
                     </button>
                 </div>
             </div>
@@ -2470,7 +2470,7 @@
                     <a href="/poilcy.html">Privacy</a>
                     <a href="/terms.html">Terms</a>
                     <a href="/shipping.html">Shipping</a>
-                    
+
                 </nav>
 
                 <!-- Socials -->
@@ -2564,6 +2564,63 @@
             .catch(error => {
                 console.error("Header loading error:", error);
             });
+
+        //bulk overlay msg 
+        // ============================================================
+        // WHATSAPP ORDER CONFIG
+        // ============================================================
+        const WHATSAPP_NUMBER = '917219713151';
+
+        // Pack pricing table (mirrors your existing data)
+        const BULK_PACK_PRICES = {
+            6: { mrp: 900, discount: 800, save: 100 },
+            12: { mrp: 1800, discount: 1500, save: 300 },
+            24: { mrp: 3600, discount: 2400, save: 1200 },
+        };
+
+        // ============================================================
+        // BULK BUY NOW → WhatsApp with order summary
+        // ============================================================
+        function bulkBuyNow() {
+            if (!selectedPack) {
+                alert('Please select a pack size.');
+                return;
+            }
+
+            const packSize = parseInt(selectedPack);
+            const qty = parseInt(document.getElementById('bulkQuantity').value);
+            const price = BULK_PACK_PRICES[packSize].discount;
+            const mrp = BULK_PACK_PRICES[packSize].mrp;
+            const save = BULK_PACK_PRICES[packSize].save;
+
+            const total = price * qty;
+            const totalMrp = mrp * qty;
+            const totalSave = save * qty;
+
+            const message =
+                `Hello BLUERICH Team,
+
+I would like to place a bulk order.
+
+*Order Summary*
+Product:    BLUERICH Caffeinated Beverage (250ml)
+Pack:       Pack of ${packSize}
+Quantity:   ${qty}
+Unit Price: ₹${price.toLocaleString()}
+MRP:        ₹${totalMrp.toLocaleString()}
+You Save:   ₹${totalSave.toLocaleString()}
+*Total:     ₹${total.toLocaleString()}*
+
+Please confirm availability and share payment / delivery details.
+
+Thank you `;
+
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+
+            // Optional: close the modal after redirect
+            closeBulkOrder();
+        }
 
         // FORMS
         document.querySelectorAll("form").forEach(form => {
