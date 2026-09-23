@@ -2457,7 +2457,7 @@
                 </div>
             </div>
         </section>
-      
+
         <!-- ================= SHOP / BULK ORDER SECTION ================= -->
         <section id="shop" class="shop-section">
 
@@ -2484,7 +2484,7 @@
                         </p>
 
                         <div class="shop-buttons">
-                            <a href="#buy-now" class="btn btn-primary shop-btn">
+                            <a href="javascript:void(0)" class="btn btn-primary shop-btn" onclick="buyNow()">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 Buy Now
                             </a>
@@ -2786,7 +2786,7 @@
                     <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
-                    <a href="https://wa.me/917219713151" target="_blank" rel="noopener" aria-label="WhatsApp">
+                    <a href="https://wa.me/1" target="_blank" rel="noopener" aria-label="WhatsApp">
                         <i class="fa-brands fa-whatsapp"></i>
                     </a>
                 </div>
@@ -2874,7 +2874,7 @@
         // ============================================================
         // WHATSAPP ORDER CONFIG
         // ============================================================
-        const WHATSAPP_NUMBER = '917219713151';
+        const WHATSAPP_NUMBER = '919689502666';
 
         // Pack pricing table (mirrors your existing data)
         const BULK_PACK_PRICES = {
@@ -2925,6 +2925,32 @@ Thank you `;
 
             // Optional: close the modal after redirect
             closeBulkOrder();
+        }
+
+
+
+
+        // ============================================================
+        // MAIN BUY NOW → WhatsApp with product enquiry message
+        // ============================================================
+        function buyNow() {
+            const message =
+                `Hello BLUERICH Team,
+
+I would like to buy BLUERICH Caffeinated Beverage (250ml).
+
+Could you please share the following details:
+• Available pack sizes & pricing
+• Payment options
+• Delivery time & charges
+• Availability
+
+Looking forward to your response.
+
+Thank you.`;
+
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
         }
 
         // FORMS
@@ -3021,7 +3047,7 @@ Thank you `;
 
             // WhatsApp number
 
-            const WHATSAPP_NUMBER = '917219713151';
+            const WHATSAPP_NUMBER = '919689502666';
 
             document.addEventListener('DOMContentLoaded', function () {
 
