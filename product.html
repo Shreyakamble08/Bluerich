@@ -1866,6 +1866,45 @@
                 overflow: visible !important;
             }
         }
+
+
+
+        /* =========================================================
+   FINAL MOBILE BUY NOW BUTTON OVERRIDE
+   ========================================================= */
+
+        @media (max-width: 520px) {
+
+            .product .purchase>.btn-primary {
+                width: 100% !important;
+                height: 64px !important;
+                min-height: 64px !important;
+
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+
+                padding: 0 20px !important;
+                margin: 0 !important;
+
+                border: none !important;
+                border-radius: 12px !important;
+
+                font-size: 0.95rem !important;
+                line-height: 1 !important;
+                gap: 9px !important;
+
+                white-space: nowrap !important;
+                box-sizing: border-box !important;
+            }
+
+            .product .purchase>.btn-primary i {
+                display: inline-block !important;
+                flex-shrink: 0 !important;
+                font-size: 0.95rem !important;
+                line-height: 1 !important;
+            }
+        }
     </style>
 </head>
 
@@ -1884,18 +1923,18 @@
                     <!-- ---------- GALLERY ---------- -->
                     <div class="gallery">
                         <div class="gallery-main">
-                            <img id="mainImage" src="/IMAGES/can4.png" alt="BLUERICH energy can" />
+                            <img id="mainImage" src="/IMAGES/can2.jpeg" alt="BLUERICH energy can" />
                         </div>
 
                         <div class="gallery-thumbs">
-                            <div class="thumb active" onclick="changeImage(this, '/IMAGES/can4.png')">
-                                <img src="/IMAGES/can4.png" alt="Front view" />
+                            <div class="thumb active" onclick="changeImage(this, '/IMAGES/can2.jpeg')">
+                                <img src="/IMAGES/can2.jpeg" alt="Front view" />
                             </div>
                             <div class="thumb" onclick="changeImage(this, '/IMAGES/can1.png')">
                                 <img src="/IMAGES/can1.png" alt="Side view" />
                             </div>
-                            <div class="thumb" onclick="changeImage(this, '/IMAGES/can4.png')">
-                                <img src="/IMAGES/can4.png" alt="Detail view" />
+                            <div class="thumb" onclick="changeImage(this, '/IMAGES/can3.jpeg')">
+                                <img src="/IMAGES/can3.jpeg" alt="Detail view" />
                             </div>
                         </div>
                     </div>
