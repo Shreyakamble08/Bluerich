@@ -2617,6 +2617,7 @@
                     <span class="section-label">Partner & Grow</span>
                     <h2 class="section-title">Be part of the FAST TRACK journey.</h2>
                 </div>
+
                 <p class="section-text">
                     Build connections, explore opportunities, and grow with a brand made to move forward.
                 </p>
@@ -2626,28 +2627,44 @@
 
                 <!-- Distributor -->
                 <article id="distributor" class="opportunity-card">
+
                     <div class="card-head">
                         <h2>Become a Distributor</h2>
                         <p>Premium partnership. Exclusive territories.</p>
                     </div>
 
                     <form id="distributor-form" class="opportunity-form" data-type="distributor">
+
                         <div class="form-row">
+
                             <div class="form-field">
                                 <label for="distributor-name">Full name</label>
                                 <input id="distributor-name" name="full_name" type="text" required />
                             </div>
+
                             <div class="form-field">
                                 <label for="distributor-email">Email</label>
                                 <input id="distributor-email" name="email" type="email" required />
                             </div>
+
                         </div>
+
                         <div class="form-row">
+
+                            <div class="form-field">
+                                <label for="distributor-mobile">Mobile Number</label>
+                                <input id="distributor-mobile" name="mobile" type="tel" inputmode="numeric"
+                                    autocomplete="tel" pattern="[0-9]{10}" maxlength="10" required />
+                            </div>
 
                             <div class="form-field">
                                 <label for="distributor-company">Company</label>
                                 <input id="distributor-company" name="company" type="text" />
                             </div>
+
+                        </div>
+
+                        <div class="form-row">
 
                             <div class="form-field">
                                 <label for="distributor-location">Location</label>
@@ -2655,38 +2672,76 @@
                             </div>
 
                         </div>
-                        <button type="submit" class="btn btn-primary form-button">Apply now</button>
+
+                        <button type="submit" class="btn btn-primary form-button">
+                            Apply now
+                        </button>
+
                     </form>
                 </article>
 
+
+
                 <!-- Careers -->
                 <article id="careers" class="opportunity-card">
+
                     <div class="card-head">
                         <h2>Join Our Team</h2>
                         <p>Performance-driven culture. Global impact.</p>
                     </div>
 
                     <form id="careers-form" class="opportunity-form" data-type="careers">
+
+                        <!-- Row 1 -->
                         <div class="form-row">
+
                             <div class="form-field">
                                 <label for="career-name">Full name</label>
                                 <input id="career-name" name="full_name" type="text" required />
                             </div>
+
                             <div class="form-field">
                                 <label for="career-email">Email</label>
                                 <input id="career-email" name="email" type="email" required />
                             </div>
+
                         </div>
-                        <div class="form-field">
-                            <label for="career-role">Role interest</label>
-                            <input id="career-role" name="role" type="text" />
+
+                        <!-- Row 2 -->
+                        <div class="form-row">
+
+                            <div class="form-field">
+                                <label for="career-mobile">Mobile Number</label>
+                                <input id="career-mobile" name="mobile" type="tel" inputmode="numeric"
+                                    autocomplete="tel" pattern="[0-9]{10}" maxlength="10" required />
+                            </div>
+
+                            <div class="form-field">
+                                <label for="career-role">Role interest</label>
+                                <input id="career-role" name="role" type="text" />
+                            </div>
+
                         </div>
-                        <button type="submit" class="btn btn-primary form-button">Send application</button>
+
+                        <!-- Row 3 -->
+                        <div class="form-row">
+
+                            <div class="form-field">
+                                <label for="career-location">Location</label>
+                                <input id="career-location" name="location" type="text" />
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary form-button">
+                            Send application
+                        </button>
+
                     </form>
                 </article>
 
             </div>
-            </div>
+
         </section>
 
         <!-- ================= THEME PALETTE ================= -->
@@ -3042,10 +3097,11 @@ Thank you.`;
         });
 
         //form submit 
+        // ============================================================
+        // OPPORTUNITY FORMS → WHATSAPP
+        // ============================================================
         (function () {
             'use strict';
-
-            // WhatsApp number
 
             const WHATSAPP_NUMBER = '919689502666';
 
@@ -3060,10 +3116,13 @@ Thank you.`;
 
                         const name = formData.get('full_name') || '';
                         const email = formData.get('email') || '';
+                        const mobile = formData.get('mobile') || '';
 
                         let message = '';
 
-                        // Distributor form
+                        // ========================================================
+                        // DISTRIBUTOR FORM
+                        // ========================================================
                         if (form.dataset.type === 'distributor') {
 
                             const company = formData.get('company') || '';
@@ -3074,41 +3133,50 @@ Thank you.`;
 
 I am interested in becoming a FAST TRACK Distributor.
 
+*Distributor Details*
+
 Name: ${name}
 Email: ${email}
+Mobile Number: ${mobile}
 Company: ${company}
 Location: ${location}
-Please share more details regarding the distributor partnership.`;
 
+Please share more details regarding the distributor partnership.`;
                         }
 
-                        // Careers form
+                        // ========================================================
+                        // CAREERS FORM
+                        // ========================================================
                         else if (form.dataset.type === 'careers') {
 
                             const role = formData.get('role') || '';
+                            const location = formData.get('location') || '';
 
                             message =
                                 `Hello FAST TRACK Team,
 
 I am interested in joining the FAST TRACK team.
 
+*Career Details*
+
 Name: ${name}
 Email: ${email}
+Mobile Number: ${mobile}
 Role Interest: ${role}
+Location: ${location}
 
 Please share more details regarding the opportunity.`;
                         }
 
-                        // Encode the complete message
+                        // ========================================================
+                        // OPEN WHATSAPP
+                        // ========================================================
                         const encodedMessage = encodeURIComponent(message);
 
-                        // WhatsApp URL
                         const whatsappURL =
                             `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 
-                        // Open WhatsApp
                         window.open(whatsappURL, '_blank');
-
                     });
 
                 });
@@ -3116,7 +3184,6 @@ Please share more details regarding the opportunity.`;
             });
 
         })();
-
     </script>
 
 </body>
